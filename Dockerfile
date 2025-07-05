@@ -28,10 +28,8 @@ COPY --from=build /usr/local/share/xray /usr/local/share/xray
 
 COPY . /code
 
-RUN set -e \
-    apt update -y \
-    && apt install -y --no-install-recommends --no-install-suggests \
-        procps \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends procps \
     && rm -rf /var/lib/apt/lists/*
 
 CMD ["bash", "-c", "python main.py"]
